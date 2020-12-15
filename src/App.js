@@ -1,22 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useContext } from 'react';
+import { StoreContext } from './store/store-context';
 
 function App() {
+  const [state, dispatch] = useContext(StoreContext);
+
+  function setCountry() {
+    const payload = state.countries.length ? ["toto", "test"] : ["foo", "bar"];
+    dispatch({
+      type: "setCountries",
+      payload
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {state.countries.toString()}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button type="button" onClick={setCountry}>Set country</button>
       </header>
     </div>
   );
