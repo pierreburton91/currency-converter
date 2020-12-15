@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+import './styles/index.scss';
 import reportWebVitals from './reportWebVitals';
 import { StoreContextProvider } from './store/store-context';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Spinner from "./components/Spinner";
+
+const backgroundImage = window.matchMedia('(prefers-color-scheme: dark)').matches ? "https://source.unsplash.com/weekly/?abstract,dark" : "https://source.unsplash.com/weekly/?abstract,light";
+
+function handleBgLoad(e) {
+  e.target.classList.add("app-background__image--loaded");
+}
+
+const Dashboard = lazy(() => import("./views/Dashboard"));
 
 ReactDOM.render(
   <React.StrictMode>
+    <div className="app-background">
+      <img src={backgroundImage} alt="Background" className="app-background__image" onLoad={handleBgLoad} />
+      <div className="app-background__overlay"></div>
+    </div>
+    <BrowserRouter>
     <StoreContextProvider>
-      <App />
+      <Switch>
+        <Route exact path="/">
+          <Suspense fallback={<Spinner />}>
+            <Dashboard />
+          </Suspense>
+        </Route>
+      </Switch>
     </StoreContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
