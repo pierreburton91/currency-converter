@@ -1,0 +1,40 @@
+:root {
+  --light: 254, 254, 254;
+  --light-dark: 238, 238, 238;
+  --dark: 33, 33, 33;
+  --dark-dark: 21, 21, 21;
+  --blue: 0, 122, 255;
+  --blue-dark: 10, 122, 255;
+  --green: 52, 199, 89;
+  --green-dark: 48, 209, 88;
+  --indigo: 88, 86, 214;
+  --indigo-dark: 94, 92, 230;
+  --orange: 255, 149, 0;
+  --orange-dark: 255, 159, 10;
+  --pink: 255, 45, 85;
+  --pink-dark: 255, 55, 95;
+  --purple: 175, 82, 222;
+  --purple-dark: 191, 90, 242;
+  --red: 255, 59, 48;
+  --red-dark: 255, 69, 58;
+  --teal: 90, 200, 250;
+  --teal-dark: 100, 210, 255;
+  --yellow: 255, 204, 0;
+  --yellow-dark: 255, 214, 10;
+  --alpha-soft: 0.24;
+  --alpha-medium: 0.48;
+  --alpha-strong: 0.8;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://source.unsplash.com/weekly/?abstract,dark");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

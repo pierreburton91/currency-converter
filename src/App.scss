@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: rgba(21, 21, 21, 0.8);
+  background-color: rgba(var(--dark-dark), var(--alpha-strong));
   backdrop-filter: blur(24px);
   min-height: 100vh;
   display: flex;
