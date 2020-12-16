@@ -1,34 +1,17 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import "normalize.css";
 import './styles/index.scss';
 import reportWebVitals from './reportWebVitals';
+import App from "./App";
 import { StoreContextProvider } from './store/store-context';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Spinner from "./components/Spinner";
-import Navbar from "./components/Navbar";
-import Background from "./components/Background";
 
-const Dashboard = lazy(() => import("./views/Dashboard"));
 
 ReactDOM.render(
   <React.StrictMode>
-    <Background />
-    <BrowserRouter>
-      <StoreContextProvider>
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Suspense fallback={<Spinner />}>
-              <Dashboard />
-            </Suspense>
-          </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </StoreContextProvider>
-    </BrowserRouter>
+    <StoreContextProvider>
+      <App />
+    </StoreContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
