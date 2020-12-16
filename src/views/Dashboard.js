@@ -14,9 +14,9 @@ function Dashboard() {
 
   return (
     <div>
-      <p>
+      <div>
         {state.countries.toString()}
-      </p>
+      </div>
       <button type="button" onClick={setCountry}>Set country</button>
     </div>
   );

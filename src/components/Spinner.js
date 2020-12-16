@@ -1,6 +1,10 @@
+import "../styles/Spinner.scss";
+
 function Spinner() {
   return (
-    <div>This is a spinner</div>
+    <div className="spinner">
+      <div className="spinner__loader"></div>
+    </div>
   );
 }
 
