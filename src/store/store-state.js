@@ -1,5 +1,12 @@
 const initialState = {
-  defaults: null,
+  defaults: {
+    locale: "en_US",
+    currency: {
+      currencyName: "Euro",
+      currencySymbol: "€",
+      id: "EUR"
+    }
+  },
   countries: null,
   currencies: null,
   pinnedCurrencies: null,

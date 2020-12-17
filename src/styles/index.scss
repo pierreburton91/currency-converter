@@ -46,6 +46,10 @@ body {
   line-height: 1.2;
 }
 
+.page {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     color: rgba(var(--light), 1);

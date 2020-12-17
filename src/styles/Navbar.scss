@@ -41,7 +41,7 @@
 
 @media (prefers-color-scheme: dark) {
   .nav {
-    box-shadow: 0 -8px 24px rgba(var(--dark), var(--alpha-medium));
+    // box-shadow: 0 -8px 24px rgba(var(--dark), var(--alpha-medium));
     background-color: rgba(var(--dark), var(--alpha-strong));
     border-top: 1px solid rgba(var(--dark-dark), var(--alpha-strong));
   }
