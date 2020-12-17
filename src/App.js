@@ -1,23 +1,24 @@
-import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
+import { Fragment, lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from "./components/Spinner";
 import Navbar from "./components/Navbar";
 import Background from "./components/Background";
-import AppService from "./services/App-service";
+import { getCountries, getCurrencies } from "./services/App-service";
 import { StoreContext } from "./store/store-context";
 
 const Dashboard = lazy(() => import("./views/Dashboard"));
 function App() {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(StoreContext);
-  const [shouldFetch, setShouldFetch] = useState(true);
+  const [shouldFetchCountries, setShouldFetchCountries] = useState(!state.countries);
+  const [shouldFetchCurrencies, setShouldFetchCurrencies] = useState(!state.currencies);
+  
+  useEffect(() => localStorage.setItem("storeState", JSON.stringify(state)), [state]);
   
   useEffect(() => {
-    async function getCountries() {
+    async function fetchCountries() {
       try {
-        if (shouldFetch) {
-          const _appService = new AppService(); 
-          const { data } = await _appService.getCountries();
+        if (shouldFetchCountries) {
+          const { data } = await getCountries();
           dispatch({
             type: "setCountries",
             payload: Object.values(data.results)
@@ -27,12 +28,30 @@ function App() {
         console.error(err, err.response);
       }
     }
-    getCountries();
-    return () => setShouldFetch(false);
-  }, [dispatch, shouldFetch]);
+    fetchCountries();
+    return () => setShouldFetchCountries(false);
+  }, [dispatch, shouldFetchCountries]);
+
+  useEffect(() => {
+    async function fetchCurrencies() {
+      try {
+        if (shouldFetchCurrencies) {
+          const { data } = await getCurrencies();
+          dispatch({
+            type: "setCurrencies",
+            payload: Object.values(data.results)
+          });
+        }
+      } catch (err) {
+        console.error(err, err.response);
+      }
+    }
+    fetchCurrencies();
+    return () => setShouldFetchCurrencies(false);
+  }, [dispatch, shouldFetchCurrencies]);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Background />
       <BrowserRouter>
         <Navbar />
@@ -47,7 +66,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
