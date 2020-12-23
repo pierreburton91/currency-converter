@@ -2,7 +2,7 @@ import { Fragment, lazy, Suspense, useContext, useEffect, useState } from 'react
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from "./components/Spinner";
 import Navbar from "./components/Navbar";
-import Background from "./components/Background";
+// import Background from "./components/Background";
 import { getCountries, getCurrencies } from "./services/App-service";
 import { StoreContext } from "./store/store-context";
 
@@ -52,7 +52,7 @@ function App() {
 
   return (
     <Fragment>
-      <Background />
+      {/* <Background /> */}
       <BrowserRouter>
         <Navbar />
         <Switch>
