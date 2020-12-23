@@ -6,7 +6,7 @@ function Flags({ currencyId }) {
   const [{ countries }] = useContext(StoreContext);
   const flags = countries.filter(country => country.currencyId === currencyId);
   const randomIndex = Math.floor(Math.random() * (flags.length + 1 - 3));
-  const displayedFlags = flags.slice(randomIndex, randomIndex + 3).map(country => <div className="flags__flag-container" key={country.id}><img className="flag-container__flag" src={`https://www.countryflags.io/${country.id.toLowerCase()}/flat/64.png`} alt={country.name} /></div>);
+  const displayedFlags = flags.slice(randomIndex, randomIndex + 3).map(country => <img className="flags__flag" src={`https://flagcdn.com/${country.id.toLowerCase()}.svg`} alt={country.name} key={country.id} />);
   const hiddenFlagsLength = flags.length - 3;
 
   return (
