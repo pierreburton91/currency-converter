@@ -13,7 +13,7 @@
   height: 32px;
   object-fit: cover;
   border-radius: 50px;
-  box-shadow: 0 4px 8px rgba(var(--dark-dark), var(--alpha-strong));
+  box-shadow: 2px 0 4px rgba(var(--dark-dark), var(--alpha-medium));
   overflow: hidden;
   &:first-child {
     z-index: 9;
@@ -33,7 +33,27 @@
     z-index: 10;
   }
 }
-.flags__hidden {
+.flags__flag--missing {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: rgba(var(--gray), 1);
+  &:after {
+    content: "?";
+  }
+}
+.flags__data {
   font-size: 0.8rem;
   margin-left: 64px;
+  font-weight: 700;
+  & > div {
+    font-weight: 400;
+  }
 }

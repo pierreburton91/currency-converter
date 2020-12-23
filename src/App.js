@@ -7,6 +7,7 @@ import { getCountries, getCurrencies } from "./services/App-service";
 import { StoreContext } from "./store/store-context";
 
 const Dashboard = lazy(() => import("./views/Dashboard"));
+const CurrencySelect = lazy(() => import("./views/CurrencySelect"));
 function App() {
   const [state, dispatch] = useContext(StoreContext);
   const [shouldFetchCountries, setShouldFetchCountries] = useState(!state.countries);
@@ -59,6 +60,11 @@ function App() {
           <Route exact path="/">
             <Suspense fallback={<Spinner />}>
               <Dashboard />
+            </Suspense>
+          </Route>
+          <Route exact path="/currency-select">
+            <Suspense fallback={<Spinner />}>
+              <CurrencySelect />
             </Suspense>
           </Route>
           <Route path="*">
