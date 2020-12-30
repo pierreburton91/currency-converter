@@ -3,12 +3,13 @@
   min-height: 40px;
   display: flex;
   align-items: center;
+  margin-right: 16px;
 }
 
 .flags__flag {
   position: absolute;
   left: 0;
-  top: 0;
+  // top: 0;
   width: 40px;
   height: 40px;
   object-fit: cover;

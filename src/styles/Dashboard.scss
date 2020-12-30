@@ -113,6 +113,7 @@
 
 .pinned-values {
   text-align: right;
+  white-space: nowrap;
 }
 .pinned-values__value {
   font-weight: 700;
@@ -120,7 +121,8 @@
 }
 
 .pinned-values__trend {
-  font-size: 0.8rem;;
+  font-size: 0.8rem;
+  transition: color 0.24s ease;
 }
 .pinned-values__trend--up {
   color: rgba(var(--green), 1);

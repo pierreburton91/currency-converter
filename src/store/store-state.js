@@ -9,8 +9,7 @@ const initialState = {
   },
   countries: null,
   currencies: null,
-  pinnedCurrencies: [],
-  lastFetch: null
+  pinnedCurrencies: []
 };
 const storedState = localStorage.getItem("storeState");
 const storeState = storedState ? Object.assign(initialState, JSON.parse(storedState)) : initialState;
