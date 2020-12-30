@@ -1,13 +1,15 @@
-import { NavLink, Switch, Route } from "react-router-dom";
+import { NavLink, Switch, Route, useHistory } from "react-router-dom";
 import "../styles/Navbar.scss";
 function Navbar() {
+  const history = useHistory();
+
   return (
       <Switch>
         <Route exact path="/currency-select">
           <nav className="nav nav--between">
-            <NavLink to="/" className="nav__link link" aria-label="Back">
+            <button type="button" className="nav__link link" aria-label="Back" onClick={history.goBack}>
               <svg className="link__svg link__svg--no-margin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 19.980469 3.9902344 A 1.0001 1.0001 0 0 0 19.292969 4.2929688 L 9.2929688 14.292969 A 1.0001 1.0001 0 0 0 9.2929688 15.707031 L 19.292969 25.707031 A 1.0001 1.0001 0 1 0 20.707031 24.292969 L 11.414062 15 L 20.707031 5.7070312 A 1.0001 1.0001 0 0 0 19.980469 3.9902344 z"></path></svg>
-            </NavLink>
+            </button>
           </nav>
         </Route>
         <Route path="*">

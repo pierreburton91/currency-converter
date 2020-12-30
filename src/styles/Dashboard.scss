@@ -22,8 +22,9 @@
   }
 }
 .base__title {
-  font-size: 1rem;
-  margin: 0;
+  font-size: 1.6rem;
+  margin-top: 0;
+  margin-bottom: 16px;
   font-weight: normal;
 }
 
@@ -90,6 +91,7 @@
 }
 .pinned-values__value {
   font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .pinned-values__trend {

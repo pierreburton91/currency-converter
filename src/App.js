@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 // import Background from "./components/Background";
 import { getCountries, getCurrencies } from "./services/App-service";
 import { StoreContext } from "./store/store-context";
+// import useDeepCompareEffect from 'use-deep-compare-effect'
 
 const Dashboard = lazy(() => import("./views/Dashboard"));
 const CurrencySelect = lazy(() => import("./views/CurrencySelect"));

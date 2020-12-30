@@ -9,7 +9,7 @@ const initialState = {
   },
   countries: null,
   currencies: null,
-  pinnedCurrencies: null,
+  pinnedCurrencies: [],
   lastFetch: null
 };
 const storedState = localStorage.getItem("storeState");
