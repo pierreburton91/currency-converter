@@ -1,7 +1,19 @@
+import { useContext, useState } from "react";
 import { NavLink, Switch, Route, useHistory } from "react-router-dom";
+import { StoreContext } from "../store/store-context";
 import "../styles/Navbar.scss";
 function Navbar() {
   const history = useHistory();
+  const [, dispatch] = useContext(StoreContext);
+  const [searchText, setSearchText] = useState("");
+
+  function submitSearch(e) {
+    e.preventDefault();
+    dispatch({
+      type: "setSearch",
+      payload: searchText
+    });
+  }
 
   return (
       <Switch>
@@ -10,6 +22,12 @@ function Navbar() {
             <button type="button" className="nav__link link" aria-label="Back" onClick={history.goBack}>
               <svg className="link__svg link__svg--no-margin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 19.980469 3.9902344 A 1.0001 1.0001 0 0 0 19.292969 4.2929688 L 9.2929688 14.292969 A 1.0001 1.0001 0 0 0 9.2929688 15.707031 L 19.292969 25.707031 A 1.0001 1.0001 0 1 0 20.707031 24.292969 L 11.414062 15 L 20.707031 5.7070312 A 1.0001 1.0001 0 0 0 19.980469 3.9902344 z"></path></svg>
             </button>
+            <form onSubmit={submitSearch} noValidate className="nav__form">
+              <input type="search" className="nav__input" onInput={e => setSearchText(e.target.value)} name="search" autoComplete="off" placeholder="Search" aria-label="Search" />
+              <button type="submit" className="nav__link link" aria-label="Submit">
+                <svg className="link__svg link__svg--no-margin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path></svg>
+              </button>
+            </form> 
           </nav>
         </Route>
         <Route path="*">

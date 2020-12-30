@@ -5,8 +5,9 @@ import { useLocation } from "react-router-dom";
 import "../styles/CurrencySelect.scss";
 
 function CurrencySelect() {
-  const [{ currencies }, dispatch] = useContext(StoreContext);
-  const currenciesList = currencies ? currencies.map(currency => (
+  const [{ currencies, search }, dispatch] = useContext(StoreContext);
+  const filteredCurrencies = currencies ? currencies.filter(curr => curr.id.toLowerCase().replace(/ /g, "").indexOf(search.toLowerCase().replace(/ /g, "")) !== -1 || curr.currencyName.toLowerCase().replace(/ /g, "").indexOf(search.toLowerCase().replace(/ /g, "")) !== -1) : [];
+  const currenciesList = filteredCurrencies.length ? filteredCurrencies.map(currency => (
       <div onClick={() => select(currency)} tabIndex="0" role="button" className="currency-select__item currency-item" key={currency.id}>
         <Flags currencyId={currency.id}>
           {currency.currencyName}

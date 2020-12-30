@@ -24,3 +24,8 @@
     background-color: rgba(var(--light), var(--alpha-medium));
   }
 }
+
+.currency-select__empty {
+  padding: 16px;
+  opacity: var(--alpha-medium);
+}

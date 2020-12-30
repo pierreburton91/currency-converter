@@ -31,6 +31,11 @@ export const reducer = (state, action) => {
         ...state,
         pinnedCurrencies
       };
+    case "setSearch":
+      return {
+        ...state,
+        search: action.payload
+      };
     default:
       throw new Error("Unhandled action");
   }

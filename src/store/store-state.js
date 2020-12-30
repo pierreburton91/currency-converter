@@ -9,7 +9,8 @@ const initialState = {
   },
   countries: null,
   currencies: null,
-  pinnedCurrencies: []
+  pinnedCurrencies: [],
+  search: ""
 };
 const storedState = localStorage.getItem("storeState");
 const storeState = storedState ? Object.assign(initialState, JSON.parse(storedState)) : initialState;
