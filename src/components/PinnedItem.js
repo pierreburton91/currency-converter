@@ -23,7 +23,7 @@ function PinedItem({ currency }) {
   };
   const longPressEvent = useLongPress(onLongPress, onClick, longPressOptions);
 
-  const valueUnit = currency.currentValue ? currency.currentValue.toFixed(0) : "0";
+  const valueUnit = currency.currentValue ? currency.currentValue.toString().split(".")[0] : "0";
   const valueDecimal = currency.currentValue ? `.${currency.currentValue.toFixed(2).split(".")[1]}` : ".00";
   const trendValue = currency.currentValue && currency.previousValue ? (((100 / currency.previousValue) * currency.currentValue) - 100).toFixed(2) : "0";
   const trendDirection = parseFloat(trendValue) >= 0;

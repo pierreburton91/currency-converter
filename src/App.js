@@ -39,9 +39,10 @@ function App() {
       try {
         if (shouldFetchCurrencies) {
           const { data } = await getCurrencies();
+          const payload = Object.values(data.results).sort((a, b) => a.id.localeCompare(b.id));
           dispatch({
             type: "setCurrencies",
-            payload: Object.values(data.results)
+            payload
           });
         }
       } catch (err) {
