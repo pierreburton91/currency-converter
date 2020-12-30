@@ -1,4 +1,5 @@
 export const reducer = (state, action) => {
+  let pinnedCurrencies;
   switch (action.type) {
     case "setCountries":
       return {
@@ -12,7 +13,20 @@ export const reducer = (state, action) => {
       };
     case "pinCurrency":
       state.pinnedCurrencies.push(action.payload);
-      const pinnedCurrencies = JSON.parse(JSON.stringify(state.pinnedCurrencies));
+      pinnedCurrencies = JSON.parse(JSON.stringify(state.pinnedCurrencies));
+      return {
+        ...state,
+        pinnedCurrencies
+      };
+    case "removePinnedCurrency":
+      pinnedCurrencies = JSON.parse(JSON.stringify(state.pinnedCurrencies.filter(item => item.id !== action.payload.id)));
+      return {
+        ...state,
+        pinnedCurrencies
+      };
+    case "updatePinnedCurrency":
+      pinnedCurrencies = JSON.parse(JSON.stringify(state.pinnedCurrencies.filter(item => item.id !== action.payload.id)));
+      pinnedCurrencies = [...pinnedCurrencies, action.payload];
       return {
         ...state,
         pinnedCurrencies

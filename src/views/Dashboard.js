@@ -1,14 +1,43 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StoreContext } from '../store/store-context';
 import Flags from "../components/Flags";
 import "../styles/Dashboard.scss";
 import PinnedItem from "../components/PinnedItem";
 import EmptyPinned from "../components/EmptyPinned";
 import { Link } from "react-router-dom";
+import { getConversion, getQuickHistory } from "../services/App-service";
 
 function Dashboard() {
-  const [{ defaults, pinnedCurrencies }] = useContext(StoreContext);
+  const [{ defaults, pinnedCurrencies }, dispatch] = useContext(StoreContext);
   const pinnedItems = pinnedCurrencies.length ? pinnedCurrencies.map(currency => <PinnedItem currency={currency} key={currency.id} />) : <EmptyPinned />;
+
+  useEffect(() => {
+    let isMounted = false;
+    if (!isMounted) {
+      pinnedCurrencies.forEach(currency => {
+        if (!("lastFetch" in currency) || currency.lastFetch >= (Date.now() + 360000)) {
+          Promise.all([getConversion(defaults.currency.id, currency.id), getQuickHistory(defaults.currency.id, currency.id)])
+            .then(responses => {
+              const endResponse = responses.map(obj => Object.values(obj.data)[0]).reduce((acc, entry) => {
+                  if (typeof entry === "object") {
+                      acc["previousValue"] = Object.values(entry)[0];
+                  } else {
+                      acc["currentValue"] = entry;
+                  }
+                  return acc;
+              }, {});
+              const payload = {...currency, ...endResponse};
+              payload.lastFetch = Date.now();
+              dispatch({
+                type: "updatePinnedCurrency",
+                payload
+              });
+            });
+        }
+      });
+    }
+    return () => isMounted = true;
+  }, [pinnedCurrencies, defaults, dispatch]);
 
   return (
     <div>
