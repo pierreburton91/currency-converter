@@ -21,6 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "serve:docs": "npx http-server -p 8080 -c-1 docs",
+    "serve:build": "npx http-server -p 8080 -c-1 build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
